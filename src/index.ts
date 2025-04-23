@@ -1,15 +1,35 @@
-// import axios, { AxiosResponse } from "axios";
+// import { UserEdit } from "./views/UserEdit";
+// import { User } from "./models/User";
 
-// axios.get("http://localhost:3000/users").then((response: AxiosResponse) => {
-//   console.log(response.data);
-// });
+// const user = User.buildUser({ name: "Matthew Clark", age: 36 });
 
+// const root = document.getElementById("root");
+
+// if (root) {
+//   const userEdit = new UserEdit(root, user);
+//   userEdit.render();
+//   console.log(userEdit);
+// } else {
+//   throw new Error("Root element not found");
+// }
+
+import { UserList } from "./views/UserList";
 import { Collection } from "./models/Collection";
+import { UserProps, User } from "./models/User";
 
-const collection = new Collection("http://localhost:3000/users");
+const users = new Collection(
+  "http://localhost:3000/users",
+  (json: UserProps) => {
+    return User.buildUser(json);
+  }
+);
 
-collection.on("change", () => {
-  console.log(collection);
+users.on("change", () => {
+  const root = document.getElementById("root");
+
+  if (root) {
+    new UserList(root, users).render();
+  }
 });
 
-collection.fetch();
+users.fetch();

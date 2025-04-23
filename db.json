@@ -1,9 +1,14 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "random person",
-      "age": 1000
+      "id": "2afc",
+      "name": "Matthew Clark",
+      "age": 35
+    },
+    {
+      "id": "1f9e",
+      "name": "Alexander Kourkoumelis",
+      "age": 35
     }
   ]
 }
